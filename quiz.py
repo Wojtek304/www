@@ -1,5 +1,7 @@
 import pygame
 
+from pytanie import Pytanie
+
 if __name__ == '__main__':
 
     pygame.init()
@@ -12,17 +14,76 @@ if __name__ == '__main__':
 
     punkty = 0
 
-    poprawna_odpowiedź = "B"
-
-    lista = [
-        ("A", pygame.Rect(10, 250, 250, 70), ["Nie"]),
-        ("B", pygame.Rect(10, 325, 250, 70), ["Tak, pod warunkiem że", "mają odpowiednie uprawnienia"]),
-        ("C", pygame.Rect(300, 250, 250, 70), ["Tak, pod warunkiem że", "są nazwane tak samo"]),
-        ("D", pygame.Rect(300, 325, 250, 70), ["Tak, niezależnie od uprawnień"])
+    pytania = [
+        Pytanie(
+            1,
+            ['Czy z otwartego pliku może korzystać', 'więcej niż jeden użytkownik lub proces?'],
+            "B",
+            [
+                ["Nie"],
+                ["Tak, pod warunkiem że", "mają odpowiednie uprawnienia"],
+                ["Tak, pod warunkiem że", "są nazwane tak samo"],
+                ["Tak, niezależnie od uprawnień"]]
+        ),
+        Pytanie(
+            2,
+            ['Co nie jest atrybutem pliku w NTFS?'],
+            "D",
+            [
+                ["Zawartość pliku"],
+                ["Nazwa pliku"],
+                ["Identyfikator pliku"],
+                ["Ikona pliku"]]
+        ),
+        Pytanie(
+            3,
+            ['Co jest zapisane na liście uprawnień ACL?'],
+            "C",
+            [
+                ["Wszystkie możliwe uprawnienia użytkownika"],
+                ["Dostępne foldery i pliki"],
+                ["Wpisy ACE z uprawnieniami", "poszczególnych użytkowników"],
+                ["Uprawnienia edycji folderów"]]
+        ),
+        Pytanie(
+            4,
+            ['Czy uprawnienia NFTS dla folderu są domyślnie', 'dziedziczone przez pliki i podfoldery?'],
+            "B",
+            [
+                ["Tak, niezależnie od ustawień"],
+                ["Tak, choć można to wyłączyć", "w ustawieniach folderu"],
+                ["Tylko przez pliki"],
+                ["Nie"]]
+        ),
+        Pytanie(
+            5,
+            ['Alicja ma uprawnienia do modyfikacji pliku.', 'Czego nie może z nim zrobić?'],
+            "D",
+            [
+                ["Odczytać jego zawartości"],
+                ["Zmienić nazwy pliku"],
+                ["Usunąć pliku"],
+                ["Zmienić uprawnień dostępu do pliku"]]
+        ),
+        Pytanie(
+            6,
+            ['Które z uprawnień NFTS zapewniają', 'możliwość tworzenia plików?'],
+            "C",
+            [
+                ["Wszystkie"],
+                ["Tylko pełna kontrola"],
+                ["Pełna kontrola, modyfikacja,", "zapis i wykonanie, zapis"],
+                ["Żadne"]]
+        )
     ]
+
+    obecny_numer_pytania = 0
+    blad = ''
 
     running = True
     while running:
+        window.fill(pygame.color.Color("white"))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -33,28 +94,51 @@ if __name__ == '__main__':
                         print("Kliknięta odpowiedź " + litera)
                         if litera == poprawna_odpowiedź:
                             punkty = punkty + 1
+                            blad = ''
+                            obecny_numer_pytania = obecny_numer_pytania + 1
+                        else:
+                            blad = 'Odpowiedź ' + litera + ' jest niepoprawna'
 
-        window.fill(pygame.color.Color("white"))
+        if obecny_numer_pytania < 6:
+            tekst_blad = big_font.render(
+                blad,
+                True,
+                pygame.color.Color("darkred"))
+            window.blit(tekst_blad, (150, 200))
 
-        punkty_tekst = "Punkty: " + str(punkty)
+            obecne_pytanie = pytania[obecny_numer_pytania]
 
-        text_surface = little_font.render(punkty_tekst, True, pygame.color.Color("black"))
-        window.blit(text_surface, (500, 40))
+            poprawna_odpowiedź = obecne_pytanie.poprawna_odpowiedz
 
-        text_surface = big_font.render('Pytanie 1', True, pygame.color.Color("black"))
-        window.blit(text_surface, (250, 40))
+            lista = [
+                ("A", pygame.Rect(10, 250, 250, 70), obecne_pytanie.odpowiedzi[0]),
+                ("B", pygame.Rect(10, 325, 250, 70), obecne_pytanie.odpowiedzi[1]),
+                ("C", pygame.Rect(300, 250, 250, 70), obecne_pytanie.odpowiedzi[2]),
+                ("D", pygame.Rect(300, 325, 250, 70), obecne_pytanie.odpowiedzi[3])
+            ]
 
-        linie = [('Czy z otwartego pliku może korzystać', 0), ('więcej niż jeden użytkownik lub proces?', 30)]
-        for linia, wysokosc in linie:
-            text_surface = big_font.render(linia, True, pygame.color.Color("black"))
-            window.blit(text_surface, (50, 80 + wysokosc))
+            punkty_tekst = "Punkty: " + str(punkty) + "/6"
 
-        for litera, prostokat, tresc in lista:
-            pygame.draw.rect(window, pygame.color.Color("lightgray"), prostokat)
-            tekst_odpowiedz = little_font.render('Odpowiedź ' + litera, True, pygame.color.Color("black"))
-            window.blit(tekst_odpowiedz, prostokat.topleft)
-            for i in range(len(tresc)):
-                tekst_tresc = little_font.render(tresc[i], True, pygame.color.Color("black"))
-                window.blit(tekst_tresc, (prostokat.left, prostokat.top + (i + 1) * 20))
+            text_surface = little_font.render(punkty_tekst, True, pygame.color.Color("black"))
+            window.blit(text_surface, (500, 40))
+
+            text_surface = big_font.render('Pytanie ' + str(obecne_pytanie.numer), True, pygame.color.Color("black"))
+            window.blit(text_surface, (250, 40))
+
+            linie = obecne_pytanie.tresc
+            for i in range(len(linie)):
+                text_surface = big_font.render(linie[i], True, pygame.color.Color("black"))
+                window.blit(text_surface, (50, 80 + 30 * i))
+
+            for litera, prostokat, tresc in lista:
+                pygame.draw.rect(window, pygame.color.Color("lightgray"), prostokat)
+                tekst_odpowiedz = little_font.render('Odpowiedź ' + litera, True, pygame.color.Color("black"))
+                window.blit(tekst_odpowiedz, prostokat.topleft)
+                for i in range(len(tresc)):
+                    tekst_tresc = little_font.render(tresc[i], True, pygame.color.Color("black"))
+                    window.blit(tekst_tresc, (prostokat.left, prostokat.top + (i + 1) * 20))
+        else:
+            text_surface = big_font.render('Brawo, udało ci się!', True, pygame.color.Color("black"))
+            window.blit(text_surface, (250, 40))
 
         pygame.display.flip()
