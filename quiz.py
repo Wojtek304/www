@@ -2,10 +2,8 @@ import pygame
 
 from pytanie import Pytanie
 
-if __name__ == '__main__':
 
-    pygame.init()
-
+def wyswietl_quiz():
     big_font = pygame.font.SysFont('Arial', 24)
     little_font = pygame.font.SysFont('Arial', 15)
 
@@ -91,7 +89,6 @@ if __name__ == '__main__':
                 for litera, prostokat, _ in lista:
                     pozycja = pygame.mouse.get_pos()
                     if prostokat.collidepoint(pozycja):
-                        print("Kliknięta odpowiedź " + litera)
                         if litera == poprawna_odpowiedź:
                             punkty = punkty + 1
                             blad = ''
@@ -142,3 +139,11 @@ if __name__ == '__main__':
             window.blit(text_surface, (250, 40))
 
         pygame.display.flip()
+
+
+if __name__ == '__main__':
+
+    pygame.init()
+    wyswietl_quiz()
+
+
