@@ -1,5 +1,7 @@
 import pygame
 
+from quiz import wyswietl_quiz
+
 if __name__ == '__main__':
 
     pozycja = (2, 1) # (6, 4)
@@ -87,9 +89,10 @@ if __name__ == '__main__':
                         pozycja = pozycja[0], pozycja[1] + 1
                         tekst_podpowiedzi = czy_podpowiedz()
             if event.type == pygame.MOUSEBUTTONUP:
-                pozycja = pygame.mouse.get_pos()
-                if przycisk.collidepoint(pozycja):
+                pozycja_myszki = pygame.mouse.get_pos()
+                if przycisk.collidepoint(pozycja_myszki):
                     running = False
+                    wyswietl_quiz()
 
         window.fill(pygame.color.Color("white"))
 
