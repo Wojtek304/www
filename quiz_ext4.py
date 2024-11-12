@@ -8,7 +8,7 @@ def wyswietl_quiz():
     little_font = pygame.font.SysFont('Arial', 15)
 
     window = pygame.display.set_mode((600, 400))
-    pygame.display.set_caption('Quiz')
+    pygame.display.set_caption('Quiz ext4')
 
     punkty = 0
 

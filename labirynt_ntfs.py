@@ -1,10 +1,10 @@
 import pygame
 
-from quiz import wyswietl_quiz
+from quiz_ntfs import wyswietl_quiz
 
-if __name__ == '__main__':
 
-    pozycja = (2, 1) # (6, 4)
+def wyswietl_labirynt():
+    pozycja = (6, 4)
     pionowe_krawedzie = [
         [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
         [1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1],
@@ -54,13 +54,11 @@ if __name__ == '__main__':
 
     tekst_podpowiedzi = ""
 
-    pygame.init()
-
     little_font = pygame.font.SysFont('Arial', 16)
     big_font = pygame.font.SysFont('Arial', 24)
 
     window = pygame.display.set_mode((600, 500))
-    pygame.display.set_caption('LabiryntNTFS')
+    pygame.display.set_caption('Labirynt NTFS')
     running = True
 
     przycisk = pygame.Rect(200, 400, 200, 50)
@@ -134,4 +132,9 @@ if __name__ == '__main__':
                 window.blit(tekst, (80, 80 + 20 * i))
 
         pygame.display.flip()
+
+
+if __name__ == '__main__':
+    pygame.init()
+    wyswietl_labirynt()
 
