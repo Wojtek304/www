@@ -16,7 +16,11 @@ def wyswietl_quiz():
     pytania = [
         Pytanie(
             1,
-            ['Czy z otwartego pliku może korzystać', 'więcej niż jeden użytkownik lub proces?'],
+            [
+                'Czy z otwartego pliku może korzystać',
+                'więcej niż jeden użytkownik lub proces?',
+                '(podpunkt a)'
+            ],
             "B",
             [
                 ["Nie"],
@@ -26,37 +30,24 @@ def wyswietl_quiz():
         ),
         Pytanie(
             2,
-            ['Co nie jest atrybutem pliku w NTFS?'],
+            [
+                'Co nie jest zapisane w atrybutach pliku w NTFS?',
+                '(podpunkt a)'
+            ],
             "D",
             [
-                ["Zawartość pliku"],
+                ["Data modyfikacji pliku"],
                 ["Nazwa pliku"],
-                ["Identyfikator pliku"],
+                ["Rozmiar pliku"],
                 ["Ikona pliku"]]
         ),
         Pytanie(
             3,
-            ['Co jest zapisane na liście uprawnień ACL?'],
-            "C",
             [
-                ["Wszystkie możliwe uprawnienia użytkownika"],
-                ["Dostępne foldery i pliki"],
-                ["Wpisy ACE z uprawnieniami", "poszczególnych użytkowników"],
-                ["Uprawnienia edycji folderów"]]
-        ),
-        Pytanie(
-            4,
-            ['Czy uprawnienia NFTS dla folderu są domyślnie', 'dziedziczone przez pliki i podfoldery?'],
-            "B",
-            [
-                ["Tak, niezależnie od ustawień"],
-                ["Tak, choć można to wyłączyć", "w ustawieniach folderu"],
-                ["Tylko przez pliki"],
-                ["Nie"]]
-        ),
-        Pytanie(
-            5,
-            ['Alicja ma uprawnienia do modyfikacji pliku.', 'Czego nie może z nim zrobić?'],
+                'Alicja ma uprawnienia do modyfikacji pliku.',
+                'Czego nie może z nim zrobić?',
+                '(podpunkt b)'
+            ],
             "D",
             [
                 ["Odczytać jego zawartości"],
@@ -65,8 +56,39 @@ def wyswietl_quiz():
                 ["Zmienić uprawnień dostępu do pliku"]]
         ),
         Pytanie(
+            4,
+            [
+                'Co jest zapisane na liście uprawnień ACL?',
+                '(podpunkt c)'
+            ],
+            "C",
+            [
+                ["Wszystkie możliwe uprawnienia użytkownika"],
+                ["Dostępne foldery i pliki"],
+                ["Wpisy ACE z uprawnieniami", "poszczególnych użytkowników"],
+                ["Uprawnienia edycji folderów"]]
+        ),
+        Pytanie(
+            5,
+            [
+                'Czy uprawnienia NFTS dla folderu są domyślnie',
+                'dziedziczone przez pliki i podfoldery?',
+                '(podpunkt d)'
+            ],
+            "B",
+            [
+                ["Tak, niezależnie od ustawień"],
+                ["Tak, choć można to wyłączyć", "w ustawieniach folderu"],
+                ["Tylko przez pliki"],
+                ["Nie"]]
+        ),
+        Pytanie(
             6,
-            ['Które z uprawnień NFTS zapewniają', 'możliwość tworzenia plików?'],
+            [
+                'Które z uprawnień NFTS zapewniają',
+                'możliwość tworzenia plików?',
+                '(podpunkt e)'
+            ],
             "C",
             [
                 ["Wszystkie"],
@@ -137,8 +159,8 @@ def wyswietl_quiz():
                     tekst_tresc = little_font.render(tresc[i], True, pygame.color.Color("black"))
                     window.blit(tekst_tresc, (prostokat.left, prostokat.top + (i + 1) * 20))
         else:
-            text_surface = big_font.render('Brawo, udało ci się!', True, pygame.color.Color("black"))
-            window.blit(text_surface, (250, 40))
+            text_surface = big_font.render('Gratulacje, ukończyłeś quiz!', True, pygame.color.Color("black"))
+            window.blit(text_surface, (200, 40))
 
         pygame.display.flip()
 

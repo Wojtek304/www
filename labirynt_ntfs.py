@@ -4,7 +4,7 @@ from quiz_ntfs import wyswietl_quiz
 
 
 def wyswietl_labirynt():
-    pozycja = (6, 4)
+    pozycja = (7, 7) # (6, 4)
     pionowe_krawedzie = [
         [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
         [1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1],
@@ -26,24 +26,60 @@ def wyswietl_labirynt():
     ]
 
     podpowiedzi = [
-        ((1, 1), ["tekst podpowiedzi 1"]),
-        ((6, 1), ["tekst podpowiedzi 2"]),
+        ((1, 1), [
+            "W systemie plików NTFS istnieje możliwość, aby więcej niż jeden",
+            "użytkownik lub proces miał dostęp do tego samego pliku w tym",
+            "samym czasie, jednak zależy to od kilku czynników, takich jak rodzaj",
+            "dostępu (odczyt, zapis) oraz konkretne operacje wykonywane na pliku."
+        ]),
+        ((6, 1), [
+            "W systemie plików atrybuty plików to informacje, które przechowują",
+            "różne cechy i właściwości plików oraz katalogów. Są one przechowywane",
+            "razem z danymi pliku i wykorzystywane do zarządzania plikami oraz",
+            "ich właściwościami. Atrybuty plików w NTFS obejmują między innymi",
+            "takie informacje jak dane o nazwie pliku, uprawnieniach dostępu,",
+            "dacie modyfikacji, rozmiarze pliku, czy też zaszyfrowanych danych."
+        ]),
         ((11, 1), [
             "Na liście uprawnień ACL znajduje się zestaw wpisów kontroli ACE.",
             "W każdym wpisie zawarta jest informacja o użytkowniku oraz jego",
-            "uprawnieniach podstawowych (read – odczyt, write – zapis, modify –",
-            "zmiana zawartości lub usuwanie, list folder contents – wyświetlenie",
-            "zawartości folderu, full control – pełen zakres uprawnień)", "i uprawnieniach specjalnych.",
+            "uprawnieniach podstawowych (odczyt, zapis, modyfikacja, wyświetlenie",
+            "zawartości folderu, pełna kontrola) i uprawnieniach specjalnych.",
             "Uprawnienia blokujące dostęp są odczytywane przed uprawnieniami",
             "umożliwiającymi dostęp. Uprawnienia są dostępne zarówno dla folderów,",
-            "jak i dla plików. Uprawnienia są domyślnie dziedziczone z folderu",
-            "na podfoldery i pliki. Ustawienie to może być włączone lub wyłączone.",
+            "jak i dla plików."
+        ]),
+        ((1, 7), [
+            "Uprawnienia dla folderu są domyślnie dziedziczone przez pliki i podfoldery,",
+            "ale można to zmieniać. Dziedziczenie uprawnień w systemie NTFS jest",
+            "jednym z podstawowych mechanizmów ułatwiających zarządzanie",
+            "dostępem do zasobów w systemie operacyjnym Windows.",
             "Uprawnienia dziedziczone są odczytywane po uprawnieniach",
-            "niedziedziczonych."
-    ]),
-        ((1, 7), ["tekst podpowiedzi 4"]),
-        ((6, 7), ["tekst podpowiedzi 5"]),
-        ((11, 7), ["tekst podpowiedzi 6"]),
+            "niedziedziczonych.",
+            "NTFS to standardowy system plików systemu Windows NT i następców."
+        ]),
+        ((6, 7), [
+            "Oprócz uprawnień podstawowych, w NTFS istnieją również uprawnienia",
+            "zaawansowane, które dzielą uprawnienia podstawowye na kilka",
+            "o węższym zakresie. Uprawnienia zaawansowane „mapują” na",
+            "ustawienia podstawowe. Oznacza to, że wybranie np. uprawnienia",
+            "podstawowego „Read” będzie równoznaczne z wyborem 4 uprawnień",
+            "zaawansowanych – List folder / read data, Read attributes,",
+            "Read extended attributes, Read permissions."
+        ]),
+        ((11, 7), [
+            "Typy uprawnień dostępne w ramach ACL w systemie NTFS to:",
+            "pełna kontrola, modyfikacja, odczyt i wykonanie, wyświetlenie zawartości",
+            "(jedynie dla folderów), odczyt oraz zapis.",
+            "- odczyt pozwala odczytać zawartość pliku/folderu",
+            "- zapis pozwala tworzyć pliki/foldery i dodawać do nich dane",
+            "- odczyt i wykonanie pozwala odczytać i zapisać zawartość pliku oraz",
+            "uruchomić jego zawartość",
+            "- modyfikacja zawiera dostęp do odczytu i wykonywania pliku",
+            "oraz jego usuwania",
+            "- pełna kontrola daje dodatkowo dostęp do usuwania podfolderów i zmiany",
+            "uprawnień pliku oraz jego właściciela"
+       ]),
     ]
 
     def czy_podpowiedz():
