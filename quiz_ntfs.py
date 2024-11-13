@@ -161,6 +161,8 @@ def wyswietl_quiz():
         else:
             text_surface = big_font.render('Gratulacje, ukończyłeś quiz!', True, pygame.color.Color("black"))
             window.blit(text_surface, (200, 40))
+            text_surface = big_font.render('Zamknij okno, aby przejść do części poświęconej ext4', True, pygame.color.Color("black"))
+            window.blit(text_surface, (70, 80))
 
         pygame.display.flip()
 
