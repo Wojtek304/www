@@ -4,7 +4,7 @@ from quiz_ntfs import wyswietl_quiz
 
 
 def wyswietl_labirynt():
-    pozycja = (7, 7) # (6, 4)
+    pozycja = (6, 4)
     pionowe_krawedzie = [
         [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
         [1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1],

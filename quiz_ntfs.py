@@ -120,7 +120,7 @@ def wyswietl_quiz():
                         else:
                             blad = 'Odpowiedź ' + litera + ' jest niepoprawna'
 
-        if obecny_numer_pytania < 6:
+        if obecny_numer_pytania < len(pytania):
             tekst_blad = big_font.render(
                 blad,
                 True,
@@ -138,7 +138,7 @@ def wyswietl_quiz():
                 ("D", pygame.Rect(300, 325, 250, 70), obecne_pytanie.odpowiedzi[3])
             ]
 
-            punkty_tekst = "Punkty: " + str(punkty) + "/6"
+            punkty_tekst = "Punkty: " + str(punkty) + "/" + str(len(pytania))
 
             text_surface = little_font.render(punkty_tekst, True, pygame.color.Color("black"))
             window.blit(text_surface, (500, 40))

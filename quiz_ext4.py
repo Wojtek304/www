@@ -15,63 +15,58 @@ def wyswietl_quiz():
     pytania = [
         Pytanie(
             1,
-            ['Czy z otwartego pliku może korzystać', 'więcej niż jeden użytkownik lub proces?'],
+            [
+                'Jaki mechanizm wykorzystuje system ext4',
+                'do zwiększenia maksymalnego rozmiaru plików?',
+                '(podpunkt a)'
+            ],
             "B",
             [
-                ["Nie"],
-                ["Tak, pod warunkiem że", "mają odpowiednie uprawnienia"],
-                ["Tak, pod warunkiem że", "są nazwane tak samo"],
-                ["Tak, niezależnie od uprawnień"]]
+                ["Fragmentację dysku"],
+                ["Ekstenty"],
+                ["Adresowanie pojedynczych bloków"],
+                ["Nie wykorzystuje żadnego"]]
         ),
         Pytanie(
             2,
-            ['Co nie jest atrybutem pliku w NTFS?'],
-            "D",
             [
-                ["Zawartość pliku"],
-                ["Nazwa pliku"],
-                ["Identyfikator pliku"],
-                ["Ikona pliku"]]
+                'Jaki jest maksymalny rozmiar pliku w ext4?',
+                '(podpunkt b)'
+             ],
+            "C",
+            [
+                ["16 MB"],
+                ["2 GB"],
+                ["16 TB"],
+                ["Nie ma limitu"]]
         ),
         Pytanie(
             3,
-            ['Co jest zapisane na liście uprawnień ACL?'],
-            "C",
             [
-                ["Wszystkie możliwe uprawnienia użytkownika"],
-                ["Dostępne foldery i pliki"],
-                ["Wpisy ACE z uprawnieniami", "poszczególnych użytkowników"],
-                ["Uprawnienia edycji folderów"]]
+                'Jakie zalety ma system ext4 w stosunku do ext3?',
+                '(podpunkt c)'
+            ],
+            "D",
+            [
+                ["Nie występuje w nim problem z rokiem 2038"],
+                ["Szybsze sprawdzanie systemu plików",
+                 "po awarii"],
+                ["Większe maksymalny rozmiar",
+                 "i szybkość zapisu plików"],
+                ["Wszystkie z powyższych"]]
         ),
         Pytanie(
             4,
-            ['Czy uprawnienia NFTS dla folderu są domyślnie', 'dziedziczone przez pliki i podfoldery?'],
-            "B",
             [
-                ["Tak, niezależnie od ustawień"],
-                ["Tak, choć można to wyłączyć", "w ustawieniach folderu"],
-                ["Tylko przez pliki"],
-                ["Nie"]]
-        ),
-        Pytanie(
-            5,
-            ['Alicja ma uprawnienia do modyfikacji pliku.', 'Czego nie może z nim zrobić?'],
-            "D",
+                'Jaka jest wada użycia opóźnionej alokacji w ext4?',
+                '(podpunkt d)'],
+            "A",
             [
-                ["Odczytać jego zawartości"],
-                ["Zmienić nazwy pliku"],
-                ["Usunąć pliku"],
-                ["Zmienić uprawnień dostępu do pliku"]]
-        ),
-        Pytanie(
-            6,
-            ['Które z uprawnień NFTS zapewniają', 'możliwość tworzenia plików?'],
-            "C",
-            [
-                ["Wszystkie"],
-                ["Tylko pełna kontrola"],
-                ["Pełna kontrola, modyfikacja,", "zapis i wykonanie, zapis"],
-                ["Żadne"]]
+                ["Zwiększa ryzyko utraty danych"],
+                ["Sprawia, że dane pojawiają się",
+                 "w pamięci później"],
+                ["Zmniejsza fragmentację danych"],
+                ["Nie ma wad"]]
         )
     ]
 
@@ -96,7 +91,7 @@ def wyswietl_quiz():
                         else:
                             blad = 'Odpowiedź ' + litera + ' jest niepoprawna'
 
-        if obecny_numer_pytania < 6:
+        if obecny_numer_pytania < len(pytania):
             tekst_blad = big_font.render(
                 blad,
                 True,
@@ -114,7 +109,7 @@ def wyswietl_quiz():
                 ("D", pygame.Rect(300, 325, 250, 70), obecne_pytanie.odpowiedzi[3])
             ]
 
-            punkty_tekst = "Punkty: " + str(punkty) + "/6"
+            punkty_tekst = "Punkty: " + str(punkty) + "/" + str(len(pytania))
 
             text_surface = little_font.render(punkty_tekst, True, pygame.color.Color("black"))
             window.blit(text_surface, (500, 40))
@@ -135,8 +130,8 @@ def wyswietl_quiz():
                     tekst_tresc = little_font.render(tresc[i], True, pygame.color.Color("black"))
                     window.blit(tekst_tresc, (prostokat.left, prostokat.top + (i + 1) * 20))
         else:
-            text_surface = big_font.render('Brawo, udało ci się!', True, pygame.color.Color("black"))
-            window.blit(text_surface, (250, 40))
+            text_surface = big_font.render('Gratulacje, ukończyłeś quiz!', True, pygame.color.Color("black"))
+            window.blit(text_surface, (200, 40))
 
         pygame.display.flip()
 

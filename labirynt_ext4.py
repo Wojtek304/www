@@ -4,46 +4,76 @@ from quiz_ext4 import wyswietl_quiz
 
 
 def wyswietl_labirynt():
-    pozycja = (6, 4)
+    pozycja = (2, 7)
     pionowe_krawedzie = [
-        [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
+        [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1],
         [1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1],
-        [1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1],
-        [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+        [1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1],
         [1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1],
         [1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-        [1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
+        [1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1],
     ]
     poziome_krawedzie = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+        [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1],
         [0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0],
         [0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1],
         [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
         [1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
-        [0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1],
+        [1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
     podpowiedzi = [
-        ((1, 1), ["tekst podpowiedzi 1"]),
-        ((6, 1), ["tekst podpowiedzi 2"]),
+        ((1, 1), [
+            "Charakterystyczną cechą ext4 jest mechanizm ekstentów, zastępujący",
+            "adresowanie pośrednie bloków znane z ext2 oraz ext3. Ext4 zamiast",
+            "adresować pojedyncze bloki, stara się mapować jak największą porcję",
+            "danych na ciągły obszar bloków na dysku. Potrzebne są do tego 3 wartości:",
+            "- początkowy blok w pliku",
+            "- rozmiar obszaru w blokach",
+            "- początkowy blok danych zapisanych na dysku",
+            "Strukturę przechowującą te wartości nazywamy ekstentem.",
+            "Dzięki temu mechanizmowi maksymalny rozmiar pliku w ext4 to 16 TB",
+            "(w ext2 było to 2 GB)."
+        ]),
         ((11, 1), [
-            "Na liście uprawnień ACL znajduje się zestaw wpisów kontroli ACE.",
-            "W każdym wpisie zawarta jest informacja o użytkowniku oraz jego",
-            "uprawnieniach podstawowych (read – odczyt, write – zapis, modify –",
-            "zmiana zawartości lub usuwanie, list folder contents – wyświetlenie",
-            "zawartości folderu, full control – pełen zakres uprawnień)", "i uprawnieniach specjalnych.",
-            "Uprawnienia blokujące dostęp są odczytywane przed uprawnieniami",
-            "umożliwiającymi dostęp. Uprawnienia są dostępne zarówno dla folderów,",
-            "jak i dla plików. Uprawnienia są domyślnie dziedziczone z folderu",
-            "na podfoldery i pliki. Ustawienie to może być włączone lub wyłączone.",
-            "Uprawnienia dziedziczone są odczytywane po uprawnieniach",
-            "niedziedziczonych."
-    ]),
-        ((1, 7), ["tekst podpowiedzi 4"]),
-        ((6, 7), ["tekst podpowiedzi 5"]),
-        ((11, 7), ["tekst podpowiedzi 6"]),
+            "System plików ext4 oferuje zwiększenie wielkości plików i partycji",
+            "w porównaniu z ext3, a także większą wydajność i skalowalność.",
+            "Jest również wydajniejszy i bardziej elastyczny, co pozwala na lepsze",
+            "zarządzanie pamięcią i optymalizację wydajności.",
+            "Posiada lepsze mechanizmy zarządzania przestrzenią dyskową, w tym",
+            "lepszą obsługę dużych plików i lepsze zarządzanie blokami,",
+            "co zmniejsza fragmentację.",
+            "Wprowadzenie sum kontrolnych dla dziennika pozwala zwiększyć",
+            "integralność danych oraz poprawić ochronę przed uszkodzeniami",
+            "w przypadku awarii systemu."
+        ]),
+        ((1, 7), [
+            "Wprowadzenie EXT4 pozwoliło na szybsze sprawdzanie systemu plików",
+            "po awarii, dzięki pominięciu w tym procesie nieużywanych bloków danych.",
+            "Poprawiona została również technika zapisu czasu oraz ominięcie problemu",
+            "z rokiem 2038 (przekręcenie licznika systemowego i cofnięcie się",
+            "do roku 1901).",
+            "EXT4 pozwala na utworzenie nieskończonej liczby podkatalogów",
+            "(EXT3 pozwalał tylko na 32 000).",
+            "Maksymalna wielkość wolumenów to eksabajt (1000 * 1000 * 1000GB),",
+            "natomiast pojedynczy plik może mieć rozmiar 16TB. Na koniec test zapisu",
+            "pliku 4GB w EXT4 jest około 2x szybszy niż w systemach EXT3 czy XFS."
+        ]),
+        ((11, 7), [
+            "Opóźniona alokacja jest strategią jak najdłuższego przetrzymywania",
+            "danych zapisywanych na dysk w pamięci podręcznej.",
+            "W momencie stworzenia pliku, wyszukiwane są wolne bloki w VFS",
+            "(Virtual File System), które mogą pomieścić bloki danych oraz metadanych.",
+            "Następnie rezerwuje się je, aby mieć pewność, że w momencie",
+            "faktycznego zapisu będzie wystarczająco miejsca na dysku.",
+            "Zalety opóźnionej alokacji to zwiększona wydajność przy zapisie rosnących",
+            "plików oraz zmniejszenie fragmentacji danych.",
+            "Wadą opóźnionej alokacji jest zwiększenie ryzyka utraty danych",
+            "podczas awarii."
+        ]),
     ]
 
     def czy_podpowiedz():
@@ -100,7 +130,7 @@ def wyswietl_labirynt():
         window.blit(tekst, (230, 410))
 
         for polozenie, tresc in podpowiedzi:
-            pygame.draw.circle(window, pygame.color.Color("blue"), (50 * polozenie[0], 50 * polozenie[1]), 12)
+            pygame.draw.circle(window, pygame.color.Color("darkorange"), (50 * polozenie[0], 50 * polozenie[1]), 12)
 
         for y in range(len(poziome_krawedzie)):
             for x in range(len(poziome_krawedzie[y])):
